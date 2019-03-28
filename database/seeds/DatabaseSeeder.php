@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         self::seedCatalog();
-        $this->command->info('Tabla catálogo inicializada con datos!');
+		$this->command->info('Tabla catálogo inicializada con datos!');
+		
+		self::seedUsers();
+    	$this->command->info('Tabla usuarios inicializada con datos!');
     }
 
     private function seedCatalog()
@@ -31,7 +34,11 @@ class DatabaseSeeder extends Seeder
             $p->synopsis = $pelicula['synopsis'];
             $p->save();
         }
-    }
+	}
+	
+	private function seedUsers() {
+		DB::table('users')->delete();
+	}
 
     private $arrayPeliculas = array(
 		array(

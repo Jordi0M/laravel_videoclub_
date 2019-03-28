@@ -30,8 +30,18 @@ class CatalogController extends Controller
     public function getEdit($id)
     {
 		$arrayPeliculas = Movie::findOrFail($id);
-        return view('catalog.edit', array('id'=>$id));
+        return view('catalog.edit', array('pelicula'=>$arrayPeliculas));
     }
-    
+	
+	public function postCreate(Request $request)
+    {
+        return view('catalog.create');
+    }
+
+    public function putEdit(Request $request, $id)
+    {
+		$arrayPeliculas = Movie::findOrFail($id);
+        return view('catalog.edit', array('pelicula'=>$arrayPeliculas));
+    }
 
 }
