@@ -35,13 +35,30 @@ class CatalogController extends Controller
 	
 	public function postCreate(Request $request)
     {
-        return view('catalog.create');
+		return view('catalog.create');
+		
+		/*
+		Cliente::create($request->all());
+		//return "prueba";
+		
+		$clientes = DB::table('clientes')->paginate(4);
+		$busqueda = $request->get("busqueda");
+		$clientes->appends(['busqueda' => $busqueda])->links();
+		
+		return view('clientes.VistaClientes', ['ListaClientes' => $clientes], ['busqueda' => $busqueda]);
+		*/
     }
 
     public function putEdit(Request $request, $id)
     {
+		$editar = Movie::where('id', $id)->first();
+		$editar->update($request->all());
+
+		return $this->getShow($id);
+		/*	
 		$arrayPeliculas = Movie::findOrFail($id);
-        return view('catalog.edit', array('pelicula'=>$arrayPeliculas));
+		return view('catalog.edit', array('pelicula'=>$arrayPeliculas));
+		*/
     }
 
 }
